@@ -7,6 +7,10 @@ inputs:
   sfdx-version:
     description: 'version of SFDX to install'
     required: false
+  cci-token:
+    description: "Required only if running in a private organization."
+    required: false
+    default: ""
   dev-hub-auth-url:
     description: 'SFDX auth URL for the Dev Hub'
     required: true
@@ -19,12 +23,13 @@ inputs:
     required: false
     default: false
     type: boolean
-
+  
 runs:
   using: "composite"
   steps:
     - uses: nimba-actions/run-robot-flow-scratch@v1
       with:
+        cci-token: "${{ inputs.cci-token }}"
         dev-hub-auth-url: '${{ inputs.dev-hub-auth-url }}'
         org-name: '${{ inputs.org-name }}'
         cumulusci-version: '${{ inputs.cumulusci-version }}'
