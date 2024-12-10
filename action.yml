@@ -14,6 +14,12 @@ inputs:
     description: 'Name of the scratch org config to use'
     required: true
     default: qa
+  debug:
+    description: 'Display debug logs during Flow Execution'
+    required: false
+    default: false
+    type: boolean
+
 runs:
   using: "composite"
   steps:
@@ -24,3 +30,4 @@ runs:
         cumulusci-version: '${{ inputs.cumulusci-version }}'
         sfdx-version: '${{ inputs.sfdx-version }}'
         setup-flow: qa_org
+        debug: '${{ inputs.debug }}'
